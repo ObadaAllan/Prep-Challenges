@@ -1,5 +1,7 @@
 "use strict";
 
+const { test } = require("@jest/globals");
+
 // Important:
 // To solve these challenges you have use (for in ,for of) or (Object.keys ,Object.values, Object.entries )
 
@@ -28,6 +30,16 @@
 
 const customerAndAge = (obj) => {
   // write your code here
+  let text="";
+  let arr=[];
+  for (const key in obj) 
+  {
+   text+=`Customer Name :${key} , Age :${obj[key]};`;
+  }
+  arr=text.split(";");
+  arr.pop();
+  
+  return arr;
 };
 // -------------------------------------------------------------------------------------------------------
 
@@ -54,6 +66,13 @@ const customerAndAge = (obj) => {
 
 const getEntries = (obj) => {
   // write your code here
+  let text="";
+  let arr=[];
+  for (const [key, value] of Object.entries(obj)) 
+{
+  arr=(`${key}: ${value}`);
+}
+
 };
 // -------------------------------------------------------------------------------------------------------
 
@@ -96,6 +115,29 @@ const getInfo = (arr) => {
   let coursesName = [];
   let studentsName = [];
   // write your code here
+  let text="";
+  for (let index = 0; index < arr.length; index++) 
+  {
+    for (const key in arr[index]) 
+      {
+        if(key=="course")
+        {
+        coursesName[index]=arr[index][key];
+        }
+        else if(key=="Students")
+        {
+          for(let i=0;i<arr[index][key].length;i++)
+          {
+          text+=`${arr[index][key][i]},`;
+          }
+        }
+      }
+    }
+
+    studentsName=text.split(",");
+    studentsName.pop();
+    
+  
 
   return { coursesName, studentsName };
 };
